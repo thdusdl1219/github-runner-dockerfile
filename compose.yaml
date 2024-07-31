@@ -1,0 +1,19 @@
+services:
+  runner:
+    image: actions-image:latest
+    privileged: true
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file: "action.env"
+    deploy:
+      mode: replicated
+      replicas: 4
+      resources:
+        limits:
+          cpus: '0.35'
+          memory: 300M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
